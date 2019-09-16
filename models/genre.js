@@ -6,7 +6,7 @@ let GenreSchema = new Schema({
 });
 
 //Virtual for Genre's URL
-GenreSchema.virtual('url').get(() => {
+GenreSchema.virtual('url').get(function() {
   return '/catalog/genre/' + this._id;
 });
 

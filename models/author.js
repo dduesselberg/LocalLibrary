@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const moment = require('moment');
+
 let AuthorSchema = new Schema({
   first_name: { type: String, required: true, max: 100 },
   family_name: { type: String, required: true, max: 100 },
@@ -22,6 +24,20 @@ AuthorSchema.virtual('lifespan').get(() => {
 //Virtual fpr author's URL
 AuthorSchema.virtual('url').get(() => {
   return '/catalog/author/' + this._id;
+});
+
+//Virtual for birth date format
+AuthorSchema.virtual('birth_formatted').get(function() {
+  if (this.date_of_birth) {
+    return moment(this.date_of_birth).format('MMMM Do, YYYY');
+  }
+});
+
+//Virtual for death date format
+AuthorSchema.virtual('death_formatted').get(function() {
+  if (this.date_of_death) {
+    return moment(this.date_of_death).format('MMMM Do, YYYY');
+  }
 });
 
 //Export model

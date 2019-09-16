@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const moment = require('moment');
 
 let BookInstanceSchema = new Schema({
   book: { type: Schema.Types.ObjectId, ref: 'Book', required: true }, //reference to the associated book
@@ -16,6 +17,11 @@ let BookInstanceSchema = new Schema({
 //Virtual for BookInstance's URL
 BookInstanceSchema.virtual('url').get(() => {
   return '/catalog/bookinstance/' + this._id;
+});
+
+//Virtual for Date format
+BookInstanceSchema.virtual('due_back_formatted').get(function() {
+  return moment(this.due_back).format('MMMM Do, YYYY');
 });
 
 //Export model

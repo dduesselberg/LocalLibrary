@@ -1,0 +1,19 @@
+extends layout
+
+block content
+    h1=title
+
+    ul
+        each author in author_list
+            li
+                a(href=author.url) #{author.family_name}, #{author.first_name}  
+                if author.date_of_birth && author.date_of_death
+                    |   (#{author.birth_formatted} - #{author.death_formatted})
+                else if author.date_of_birth && !author.date_of_death
+                    |   (Born: #{author.birth_formatted})
+                else
+                    |   (No data available)
+
+        else
+            li There are no authors.
+
