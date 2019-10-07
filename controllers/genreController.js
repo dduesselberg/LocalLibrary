@@ -21,7 +21,6 @@ exports.genre_detail = (req, res, next) => {
   async.parallel(
     {
       genre: function(callback) {
-        console.log(req.params._id);
         Genre.findById(req.params.id).exec(callback);
       },
 
