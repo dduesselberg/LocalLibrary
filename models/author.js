@@ -16,9 +16,19 @@ AuthorSchema.virtual('name').get(function() {
 
 //Virtual for author's lifespan
 AuthorSchema.virtual('lifespan').get(function() {
-  return (
-    this.date_of_death.getYear() - this.date_of_birth.getYear()
-  ).toString();
+  if (this.date_of_death !== null && this.date_of_birth !== null) {
+    console.log(this.date_of_death);
+    return (
+      this.date_of_death.getYear() - this.date_of_birth.getYear()
+    ).toString();
+  } else if (this.date_of_birth == null) {
+    return '(Age unknown)';
+  } else {
+    var newDate = new Date().getFullYear() - 1900;
+    console.log(newDate);
+    console.log(this.date_of_birth.getYear());
+    return (newDate - this.date_of_birth.getYear()).toString();
+  }
 });
 
 //Virtual fpr author's URL
