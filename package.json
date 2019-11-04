@@ -1,6 +1,9 @@
 {
   "name": "express-locallibrary-tutorial",
   "version": "0.0.0",
+  "engines": {
+    "node": "10.16.3"
+  },
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
@@ -14,9 +17,9 @@
     "express-validator": "^6.2.0",
     "http-errors": "~1.6.3",
     "moment": "^2.24.0",
-    "mongoose": "^5.6.13",
+    "mongoose": "^5.7.7",
     "morgan": "~1.9.1",
-    "nodemon": "^1.19.2",
+    "nodemon": "^1.19.4",
     "pug": "2.0.0-beta11"
   }
 }
